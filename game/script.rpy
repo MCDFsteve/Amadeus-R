@@ -341,8 +341,8 @@ label start2:
         while True:
     # 使用前面定义的is_connected_to_internet函数来检查网络连接
             # 用户输入
+            renpy.show("hito_kotoba2",at_list=[text])
             user_input = renpy.input("", length=100)
-            renpy.show("hito_kotoba2",at_list=["text"])
             messages.append({"role": "user", "content": user_input})
             if check_internet_connection():
             # 原有的API调用代码
