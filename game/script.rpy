@@ -275,9 +275,16 @@ label error:
     scene BG40N2
     play music "audio/bgm219.ogg"
     jump errorloop
+label error2:
+    scene BG40N2
+    play music "audio/bgm219.ogg"
+    jump errorloop2
 label errorloop:
     error "\n\n你似乎没有连接网络。请尝试检查联网后重新启动。"
     jump errorloop
+label errorloop2:
+    error "\n\nAI出现了一些问题。请尝试重新启动。"
+    jump errorloop2
 label start2:
     play sound "tone.ogg"
     python:
@@ -341,13 +348,18 @@ label start2:
         while True:
     # 使用前面定义的is_connected_to_internet函数来检查网络连接
             # 用户输入
-            renpy.show("hito_kotoba2",at_list=[text])
             user_input = renpy.input("", length=100)
-            messages.append({"role": "user", "content": user_input})
+            renpy.show("loading")
+            to_gpt = user_input
+            renpy.pause(0.2)
+            messages.append({"role": "user", "content": to_gpt})
             if check_internet_connection():
             # 原有的API调用代码
-              messages = chatgpt.completion(messages, proxy="http://prima.wiki/proxy.php")
-              response = messages[-1]["content"]
+              try:
+                 messages = chatgpt.completion(messages, proxy="http://prima.wiki/proxy.php")
+                 response = messages[-1]["content"]
+              except Exception as e:
+                 renpy.jump("error2")
             else:
               renpy.jump("error")
      
@@ -372,9 +384,9 @@ label start2:
                    voice(voice_file, tag=None)
                 else:
                    voice("ask_me_whatever.ogg",tag=None)
+                renpy.hide("loading")
                 e(part)
-                renpy.hide("hito_kotoba2")
-                renpy.pause(0.5)  # Add a short pause between each part
+                renpy.pause(0.3)  # Add a short pause between each part
 
 
     return

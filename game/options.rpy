@@ -3,7 +3,7 @@
 
 ## 游戏版本号。
 
-define config.version = "1.2"
+define config.version = "1.2.5"
 ## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
 ## 在适用的时候您可能需要对其取消注释。
 define audio.hello = "audio/hello.ogg"
@@ -12,7 +12,7 @@ image BG13A1=At("images/BG13A1.png")
 image BG18A2=At("images/BG18A2.png")
 image BG05A1=At("images/BG05A1.png")
 image BG40N2=At("images/BG40N2.png")
-
+image loading= At("images/loading.png")
 image BG40A=At("images/BG40A.png")
 image BG42A3=At("images/BG42A3.png")
 image BG91N=At("images/BG91N.png")
