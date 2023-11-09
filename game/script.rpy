@@ -199,6 +199,14 @@ init python:
         "真是": ["amadeus sided_eyes_closed","amadeus eyes_closed","amadeus annoyed","amadeus indifferent","amadeus pissed","amadeus side","amadeus sided_pleasant","amadeus sided_surprised","amadeus sided_thinking","amadeus sided_worried"],
         "没救": ["amadeus sided_eyes_closed","amadeus eyes_closed","amadeus annoyed","amadeus indifferent","amadeus pissed","amadeus side","amadeus sided_pleasant","amadeus sided_surprised","amadeus sided_thinking","amadeus sided_worried"],
         "克里斯": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "老婆": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "媳妇": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "爱": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "亲": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "女": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "美": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "可爱": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
+        "帅": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
         "chri": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
         "@ch": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
         "栗悟饭": ["amadeus blush","amadeus sided_blush","amadeus angry","amadeus sided_angry"],
@@ -210,6 +218,19 @@ init python:
         "棒": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
         "厉害": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
         "强": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "是": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "天": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "好": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "哼": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "看": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "说": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "种": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "东": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "西": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "南": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "北": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "吃": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
+        "喝": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
         "ubun": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
         "ux": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
         "un": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
@@ -304,7 +325,7 @@ label start2:
     show phone3 at on
     show logo at go
     show phone1 at on2
-    show time at ti
+    show screen time
     voice hello
     e "Hello~"
     python:
@@ -352,13 +373,18 @@ label start2:
             renpy.show("loading")
             to_gpt = user_input
             renpy.pause(0.2)
+            config.keymap['dismiss'] = None
             messages.append({"role": "user", "content": to_gpt})
             if check_internet_connection():
             # 原有的API调用代码
               try:
                  messages = chatgpt.completion(messages, proxy="http://prima.wiki/proxy.php")
                  response = messages[-1]["content"]
+              except BaseException as e:
+                 renpy.jump("error2")
               except Exception as e:
+                 renpy.jump("error2")
+              except KeyError as e:
                  renpy.jump("error2")
             else:
               renpy.jump("error")
@@ -385,6 +411,7 @@ label start2:
                 else:
                    voice("ask_me_whatever.ogg",tag=None)
                 renpy.hide("loading")
+                config.keymap['dismiss'] = None
                 e(part)
                 renpy.pause(0.3)  # Add a short pause between each part
 

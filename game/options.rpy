@@ -2,22 +2,42 @@
 ##
 
 ## 游戏版本号。
-
-define config.version = "1.2.5"
+define config.version = "1.2.8"
+define version = "·优化了软件包体，文件变得更小了。\n·调整了一些设置，现在角色扮演咒语可以由我在网上热更新。\n·修复了各种原因导致的报错。\n·添加了更多背景和背景音乐，背景音乐现在声音调低了。\n更多调整。"
 ## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
 ## 在适用的时候您可能需要对其取消注释。
+screen time:
+    vbox:
+        xpos 0.016
+        ypos 0.04
+        imagebutton idle "images/time.png" hover "images/time.png" :
+             action ShowMenu("creater")
+screen creater:
+    add "BG40N2"
+    vbox:
+        xpos 0
+        ypos 0.2
+        text "Amadeus"
+        text "版本-[config.version]"
+        text "作者：{a=https://dfsteve.top}戴夫邻居史蒂夫DFsteve{/a}"
+        text "{a=https://github.com/MCDFsteve/AmadeusByRenPyAndChatGPT}点此查看GitHub{/a}"
+        text "版本更新内容："
+        text "[version]"
+        textbutton ("\n\n点我返回") action Return()
+    key "pad_b_press" action Return()
+    key "game_menu" action Return()
 define audio.hello = "audio/hello.ogg"
-image BG01A=At("images/BG01A.png")
-image BG13A1=At("images/BG13A1.png")
-image BG18A2=At("images/BG18A2.png")
-image BG05A1=At("images/BG05A1.png")
-image BG40N2=At("images/BG40N2.png")
+image BG01A=At("images/BG01A.avif")
+image BG13A1=At("images/BG13A1.avif")
+image BG18A2=At("images/BG18A2.avif")
+image BG05A1=At("images/BG05A1.avif")
+image BG40N2=At("images/BG40N2.avif")
 image loading= At("images/loading.png")
-image BG40A=At("images/BG40A.png")
-image BG42A3=At("images/BG42A3.png")
-image BG91N=At("images/BG91N.png")
-image BG99A=At("images/BG99A.png")
-image BG101A=At("images/BG101A.png")
+image BG40A=At("images/BG40A.avif")
+image BG42A3=At("images/BG42A3.avif")
+image BG91N=At("images/BG91N.avif")
+image BG99A=At("images/BG99A.avif")
+image BG101A=At("images/BG101A.avif")
 
 image phone1=At("images/phone1.png")
 image phone2=At("images/phone2.png")
