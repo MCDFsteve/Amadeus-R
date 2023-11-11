@@ -2,7 +2,8 @@
 ##
 
 ## 游戏版本号。
-define config.version = "1.2.8"
+$ persistent.vits = True
+define config.version = "1.2.9.3"
 define version = "·优化了软件包体，文件变得更小了。\n·调整了一些设置，现在角色扮演咒语可以由我在网上热更新。\n·修复了各种原因导致的报错。\n·添加了更多背景和背景音乐，背景音乐现在声音调低了。\n更多调整。"
 ## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
 ## 在适用的时候您可能需要对其取消注释。
@@ -12,17 +13,31 @@ screen time:
         ypos 0.04
         imagebutton idle "images/time.png" hover "images/time.png" :
              action ShowMenu("creater")
+init python:
+    if persistent.vits:
+        vits_switch = "AI语音"
+    else:
+        vits_switch = "关键词回复"
 screen creater:
+    python:
+        if persistent.vits:
+            vits_status = "AI语音"
+        else:
+            vits_status = "关键词回复"
     add "BG40N2"
     vbox:
         xpos 0
-        ypos 0.2
+        ycenter 0.5
         text "Amadeus"
         text "版本-[config.version]"
         text "作者：{a=https://dfsteve.top}戴夫邻居史蒂夫DFsteve{/a}"
         text "{a=https://github.com/MCDFsteve/AmadeusByRenPyAndChatGPT}点此查看GitHub{/a}"
         text "版本更新内容："
         text "[version]"
+        text "\n"
+        textbutton ("关闭AI语音（使用关键词回复，会更快）")  action SetVariable("persistent.vits",False)
+        textbutton ("打开AI语音（即时生成语音对话，会更慢）")  action SetVariable("persistent.vits",True)
+        text "\n当前语音状态：\n[vits_status]"
         textbutton ("\n\n点我返回") action Return()
     key "pad_b_press" action Return()
     key "game_menu" action Return()

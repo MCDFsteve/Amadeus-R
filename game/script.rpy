@@ -37,7 +37,6 @@ init python:
     config.keymap['developer'] = []
     config.keymap['help'] = []
     config.keymap['choose_renderer'] = []
-
     config.keymap['progress_screen'] = []
     config.keymap['accessibility'] = []
     config.keymap['bubble_editor'] = []
@@ -48,7 +47,6 @@ init python:
     config.keymap['focus_left'] = []
     config.keymap['focus_right'] = []
     config.keymap['focus_up'] = []
-
     config.keymap['focus_down'] = []
     config.keymap['skip'] = []
     config.keymap['toggle_skip'] = []
@@ -284,7 +282,7 @@ label start:
         def check_internet_connection():
             try:
         # 建立一个TCP连接来检查网络连接
-                socket.create_connection(("www.baidu.com", 80))
+                socket.create_connection(("node3-cn-hz-cu.haoyue.ltd", 10020))
                 return True
             except OSError:
                 return False
@@ -326,20 +324,43 @@ label start2:
     show logo at go
     show phone1 at on2
     show screen time
-    voice hello
+    voice "audio/hello.ogg"
     e "Hello~"
     python:
         import chatgpt
+        import io 
+        import urllib
+        import urllib.request
+        import json
+        import tempfile
+        import uuid
+        import time
+        import re
+        import shutil
         messages = [
             {"role": "system", "content": hanashi},
             {"role": "assistant", "content": "Hello~"}
         ]
-        import re
-
+        tts_url = "http://node3-cn-hz-cu.haoyue.ltd:10020/tts"
+        def send_text_to_tts(text):
+            # 准备数据和请求
+            data = json.dumps({"text": text,"uuid":myuuid})
+            data = data.encode("utf-8")
+            req = urllib.request.Request(tts_url, data, {'Content-Type': 'application/json'})
+    # 发送请求并接收响应
+            with urllib.request.urlopen(req) as response:
+                if response.getcode() == 200:
+                    if not os.path.exists(audio_folder):
+                        os.makedirs(audio_folder)
+                    with open(audio_file_path, "wb") as audio_file:
+                        audio_file.write(response.read())
+                    return audio_file_path
+                else:
+                    return None
 # This function splits the text by sentence enders and yields the parts
         def split_by_punctuation(text, max_length=20):
     # Define the regex pattern for sentence enders
-            pattern = re.compile(r'。|！|？|\.|!|\?')
+            pattern = re.compile(r'。|！|？|!|\?')
             start = 0
             for match in pattern.finditer(text):
                 end = match.end()
@@ -406,14 +427,49 @@ label start2:
                 else:
                     renpy.show("amadeus normal")
                 voice_file = get_voice_file_for_keywords(part)
-                if voice_file is not None:
-                   voice(voice_file, tag=None)
-                else:
-                   voice("ask_me_whatever.ogg",tag=None)
                 renpy.hide("loading")
                 config.keymap['dismiss'] = None
+                #time.sleep(0.5)
+                # 确保存放目录存在
+                if persistent.vits:
+                    audio_folder = os.path.join(config.gamedir, "audio_temp")
+                    myuuid = str(uuid.uuid4())
+                    audio_file_path = os.path.join(audio_folder,myuuid+".mp3")
+                    audio_tts = os.path.join("audio_temp",myuuid+".mp3")
+                    audio_file = send_text_to_tts(part)
+                    folder_path = "audio_temp"
+                    url = os.path.join("http://node3-cn-hz-cu.haoyue.ltd:10022/tts/",myuuid+".mp3")
+                    game_directory = config.gamedir
+                    destination = os.path.join(game_directory, "audio_temp",myuuid+".mp3")
+                    if not os.path.exists(os.path.dirname(destination)):
+                        os.makedirs(os.path.dirname(destination))
+                    # 发起请求并下载文件
+                    try:
+                        r = requests.get(url)
+                        with open(destination, 'wb') as f:
+                            f.write(r.content)
+                    except requests.exceptions.RequestException as e:
+                    except IOError as e:
+                        renpy.jump("error")
+                    except BaseException as e:
+                        renpy.jump("error")
+                    except Exception as e:
+                        renpy.jump("error")
+                    except KeyError as e:
+                        renpy.jump("error")
+                    voice(audio_tts)
+                else:
+                    if voice_file is not None:
+                       voice(voice_file, tag=None)
+                    else:
+                       voice("ask_me_whatever.ogg",tag=None)
                 e(part)
-                renpy.pause(0.3)  # Add a short pause between each part
+                renpy.pause(0.3) 
+                if persistent.vits:
+                    if os.path.exists(audio_file):
+                       os.remove(audio_file) # Add a short pause between each part
+                else:
+                    print("嘟嘟噜")
 
 
     return
