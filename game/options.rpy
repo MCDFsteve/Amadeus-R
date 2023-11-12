@@ -2,10 +2,9 @@
 ##
 
 ## 游戏版本号。
-$ config.default_music_volume = 1.0
 $ persistent.vits = True
-define config.version = "1.3.0"
-define version = "·新增了AI语音，可在设置里切换。"
+define config.version = "1.3.1"
+define version = "·新增了AI语音，可在设置里切换。\n·新增了bgm音量大小调节模块。"
 ## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
 ## 在适用的时候您可能需要对其取消注释。
 screen time:
@@ -19,6 +18,8 @@ init python:
         vits_switch = "AI语音"
     else:
         vits_switch = "关键词回复"
+style custom_slider_style:
+    xmaximum 600
 screen creater:
     python:
         if persistent.vits:
@@ -41,6 +42,7 @@ screen creater:
         text "\n当前语音状态：\n[vits_status]"
         text "\nBGM音量调节"
         hbox:
+            style "custom_slider_style"
             bar value Preference("music volume")
         textbutton ("\n\n点我返回") action Return()
     key "pad_b_press" action Return()
