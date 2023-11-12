@@ -471,6 +471,7 @@ label start2:
                     voice(audio_tts)
                     e(part)
                     renpy.pause(0.3)
+                    renpy.show("loading")
                     if os.path.exists(audio_file):
                        os.remove(audio_file)
                 else:
@@ -480,6 +481,7 @@ label start2:
                        voice("ask_me_whatever.ogg",tag=None)
                     e(part)
                     renpy.pause(0.3) 
+                    renpy.show("loading")
 
 
     return

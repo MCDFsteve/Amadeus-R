@@ -555,6 +555,7 @@ init python:
     build.classify('**/thumbs.db', None)
     build.classify('**.rpy', None)
     build.classify('**.save', None)
+    build.classify('audio_temp/', None)
     build.classify('saves/**.save', None)
     build.classify('**.txt', None)
     build.classify('**.md', None)
