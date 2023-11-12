@@ -1,37 +1,51 @@
-Sun Nov 12 22:39:02 2023
+Sun Nov 12 23:27:38 2023
 Windows-10-10.0.22621
 Ren'Py 8.1.3.23091805
  
 
 Bootstrap to the start of init.init. took 0.03s
 Early init. took 0.00s
-Loader init. took 0.05s
+Loader init. took 0.06s
 Loading error handling. took 0.03s
-Loading script. took 0.12s
+Loading script. took 0.17s
 Loading save slot metadata. took 0.03s
 Loading persistent. took 0.00s
 Failed to initialize steam: Exception('Init returned false.')
- - Init at renpy/common/00steam.rpy:710 took 0.28115 s.
- - Init at game/script.rpy:29 took 0.41718 s.
-Running init code. took 0.75s
-Loading analysis data. took 0.01s
+ - Init at game/script.rpy:29 took 0.48657 s.
+Running init code. took 0.78s
+Loading analysis data. took 0.02s
 Analyze and compile ATL. took 0.01s
 Reloading save slot metadata. took 0.02s
 Index archives took 0.00s
-Dump and make backups. took 0.04s
+Backing up script files to 'C:\\Users\\HS\\AppData\\Roaming/RenPy/backups\\Amadeus-git':
+Dump and make backups. took 0.05s
 Cleaning cache. took 0.00s
 Making clean stores. took 0.00s
-Initial gc. took 0.02s
+Initial gc. took 0.03s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: Disabled thread optimizations.
-Creating interface object. took 0.22s
+Creating interface object. took 0.25s
 Cleaning stores took 0.00s
 Init translation took 0.03s
 Build styles took 0.00s
-Load screen analysis took 0.02s
-Analyze screens took 0.00s
-Save screen analysis took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
 Prepare screens took 0.05s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.00s
+Save bytecode. took 0.02s
+Running _start took 0.00s
+Performance test:
+Interface start. took 0.10s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'NVIDIA Corporation'"
+Renderer: b'NVIDIA GeForce RTX 3050 Laptop GPU/PCIe/SSE2'
+Version: b'4.6.0 NVIDIA 537.58'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096

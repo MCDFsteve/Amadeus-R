@@ -5,9 +5,9 @@ While running game code:
     call _splashscreen from _call_splashscreen_1
   File "game/script.rpy", line 329, in script
     python:
-  File "game/script.rpy", line 447, in <module>
-    audio_file_path = os.path.join(audio_folder,myuuid+".mp3")
-NameError: name 'myuuid' is not defined
+  File "game/script.rpy", line 471, in <module>
+    voice(audio_tts,volume=1.5)
+TypeError: voice() got an unexpected keyword argument 'volume'
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -16,15 +16,15 @@ Full traceback:
     call _splashscreen from _call_splashscreen_1
   File "game/script.rpy", line 329, in script
     python:
-  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/ast.py", line 1138, in execute
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/python.py", line 1122, in py_exec_bytecode
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 447, in <module>
-    audio_file_path = os.path.join(audio_folder,myuuid+".mp3")
-NameError: name 'myuuid' is not defined
+  File "game/script.rpy", line 471, in <module>
+    voice(audio_tts,volume=1.5)
+TypeError: voice() got an unexpected keyword argument 'volume'
 
-macOS-14.1.1-arm64-arm-64bit arm64
+Windows-10-10.0.22621 AMD64
 Ren'Py 8.1.3.23091805
-Amadeus 1.2.9.4
-Sun Nov 12 14:13:00 2023
+Amadeus 1.3.0
+Sun Nov 12 23:19:08 2023

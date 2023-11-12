@@ -2,6 +2,7 @@
 ##
 
 ## 游戏版本号。
+$ config.default_music_volume = 1.0
 $ persistent.vits = True
 define config.version = "1.3.0"
 define version = "·新增了AI语音，可在设置里切换。"
@@ -38,6 +39,9 @@ screen creater:
         textbutton ("关闭AI语音（使用关键词回复，会更快）")  action SetVariable("persistent.vits",False)
         textbutton ("打开AI语音（即时生成语音对话，会更慢）")  action SetVariable("persistent.vits",True)
         text "\n当前语音状态：\n[vits_status]"
+        text "\nBGM音量调节"
+        hbox:
+            bar value Preference("music volume")
         textbutton ("\n\n点我返回") action Return()
     key "pad_b_press" action Return()
     key "game_menu" action Return()
