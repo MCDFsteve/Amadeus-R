@@ -3,7 +3,7 @@
 
 ## 游戏版本号。
 $ persistent.vits = True
-define config.version = "1.2.9.3"
+define config.version = "1.2.9.4"
 define version = "·优化了软件包体，文件变得更小了。\n·调整了一些设置，现在角色扮演咒语可以由我在网上热更新。\n·修复了各种原因导致的报错。\n·添加了更多背景和背景音乐，背景音乐现在声音调低了。\n更多调整。"
 ## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
 ## 在适用的时候您可能需要对其取消注释。
@@ -568,6 +568,7 @@ init python:
     build.classify('game/**.mp3', 'archive')
     build.classify('game/**.wav', 'archive')
     build.classify('game/**.ttf', 'archive')
+    build.classify('game/**.otf', 'archive')
     build.classify('game/**.ogg', 'archive')
     build.classify('game/**.webp', 'archive')
     build.classify('game/**.py', 'archive')
