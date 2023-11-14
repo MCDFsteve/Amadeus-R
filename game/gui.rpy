@@ -34,14 +34,14 @@ define gui.idle_color = '#ffffff'
 define gui.idle_small_color = '#aaaaaa'
 
 ## 当按钮和滑条被悬停时使用的颜色。
-define gui.hover_color = '#ffffff'
+define gui.hover_color = '#d6d6d6'
 
 ## 当文本按钮被选中但非焦点时使用的颜色。当一个按钮为当前屏幕或设置选项值时，会
 ## 处于选中状态。
-define gui.selected_color = '#ffffff'
+define gui.selected_color = '#878787'
 
 ## 当文本按钮无法被选择时使用的颜色。
-define gui.insensitive_color = '#ffffff7f'
+define gui.insensitive_color = '#6767677f'
 
 ## 滑条未填充的部分使用的颜色。这些颜色不直接使用，但在重新生成条形图像文件时使
 ## 用。
@@ -150,7 +150,7 @@ define gui.button_tile = False
 define gui.button_text_font = gui.interface_text_font
 
 ## 按钮所使用的文本大小。
-define gui.button_text_size = gui.interface_text_size
+define gui.button_text_size = 40
 
 ## 按钮文本在各种状态下的颜色。
 define gui.button_text_idle_color = gui.idle_color

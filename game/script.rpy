@@ -26,6 +26,8 @@ transform girl:
          xcenter 0.84
          ycenter 0.39
          zoom 0.725
+default conversation_log = []
+default messages = []
 init python:
     config.keymap['game_menu'] = []
     config.keymap['rollback'] = []
@@ -265,7 +267,15 @@ init python:
         "安": ["amadeus happy","amadeus sided_pleasant","amadeus winking"],
         # 添加更多关键词和图像文件的映射
     }
-
+init python:
+        # 导入random模块
+        import random
+        # 定义一个包含所有可能标签的列表
+        bg_list = ["BG01A", "BG13A1", "BG05A1", "BG18A2","BG101A","BG99A","BG91N","BG42A3","BG40A"]
+        bgm_list = ["audio/bgm204.ogg", "audio/bgm205.ogg","audio/bgm212.ogg","audio/bgm216.ogg"]
+        # 随机选择一个标签
+        renpy.store.random_bg = random.choice(bg_list)
+        renpy.store.random_bgm = random.choice(bgm_list)
     
 # The game starts here.
 image connect = Text("Connect to Kurisu?", size=55,color="#ff9e17")
@@ -276,7 +286,18 @@ label start:
     show connect at con
     play music "ringtone_gate_of_steiner.ogg" fadein 1.0 fadeout 1.0
     show logo2 at lo
+    $ global conversation_log
     $ renpy.pause(200, hard=False)
+    default persistent.save1 = True
+    default persistent.save2 = True
+    default persistent.save3 = True
+    default persistent.save4 = True
+    default persistent.save5 = True
+    default persistent.save6 = True
+    default persistent.save7 = True
+    default persistent.save8 = True
+    default persistent.save9 = True
+    default persistent.save10 = True
     python:
         import socket
         def check_internet_connection():
@@ -306,15 +327,7 @@ label errorloop2:
     jump errorloop2
 label start2:
     play sound "tone.ogg"
-    python:
-        # 导入random模块
-        import random
-        # 定义一个包含所有可能标签的列表
-        bg_list = ["BG01A", "BG13A1", "BG05A1", "BG18A2","BG101A","BG99A","BG91N","BG42A3","BG40A"]
-        bgm_list = ["audio/bgm204.ogg", "audio/bgm205.ogg","audio/bgm212.ogg","audio/bgm216.ogg"]
-        # 随机选择一个标签
-        renpy.store.random_bg = random.choice(bg_list)
-        renpy.store.random_bgm = random.choice(bgm_list)
+    $ persistent.has_loaded = False
         # 根据索引调用对应的标签
     scene expression renpy.store.random_bg
     play music renpy.store.random_bgm fadein 1.0 fadeout 1.0 volume 0.5
@@ -326,6 +339,429 @@ label start2:
     show screen time
     voice "audio/hello.ogg"
     e "Hello~"
+    $ conversation_log.append("Amadeus：『Hello~』\n")
+    init python:
+        import os
+        import json
+        def save_conversation_log1():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save1.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log2():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save2.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log3():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save3.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log4():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save4.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log5():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save5.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log6():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save6.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+        def save_conversation_log7():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save7.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log8():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save8.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log9():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save9.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+        def save_conversation_log10():
+            global conversation_log, messages
+            save_folder = "gpt_save"
+            save_path = os.path.join(config.gamedir, save_folder, "gpt_save10.json")
+            if not os.path.exists(os.path.join(config.gamedir, save_folder)):
+                os.makedirs(os.path.join(config.gamedir, save_folder))
+            with open(save_path, "w") as file:
+                file.write("Conversation Log:\n")
+                for line in conversation_log:
+                    file.write(line + "\n")
+                file.write("\n\nMessages:\n")
+                for message in messages:
+                    file.write(str(message) + "\n")  # 将 message 转换为字符串类型再写入文件
+            return
+            return
+        def load_conversation_log1():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save1.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log2():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save2.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log3():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save3.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log4():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save4.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log5():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save5.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log6():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save6.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log7():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save7.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log8():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save8.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log9():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save9.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+        def load_conversation_log10():
+            global conversation_log, messages
+            load_folder = "gpt_save"
+            load_path = os.path.join(config.gamedir, load_folder, "gpt_save10.json")
+            conversation_log = []
+            messages = []
+            is_reading_messages = False
+            if os.path.exists(load_path):
+                with open(load_path, "r") as file:
+                    for line in file:
+                        if 'Messages:' in line:
+                            is_reading_messages = True
+                            continue
+
+                        if is_reading_messages:
+                            if line.strip():  # 避免空行
+                                try:
+                                    # 将字符串转换回字典
+                                    message = eval(line.strip())
+                                    messages.append(message)
+                                except Exception as e:
+                                    renpy.jump("error")
+                        else:
+                            if 'Conversation Log:' not in line:
+                                conversation_log.append(line.strip())
+            persistent.has_loaded = True
+            return conversation_log, messages
+    init python:
+        def display_messages(messages):
+            for message in messages:
+                if message["role"] == "system":
+                    e(None, message["content"])
+                elif message["role"] == "assistant":
+                    e(e, message["content"])
+    jump start3
+label start3:
     python:
         import chatgpt
         import io 
@@ -338,10 +774,13 @@ label start2:
         import time
         import re
         import shutil
-        messages = [
-            {"role": "system", "content": hanashi},
-            {"role": "assistant", "content": "Hello~"}
-        ]
+        if not persistent.has_loaded:
+            messages = [
+                {"role": "system", "content": hanashi},
+                {"role": "assistant", "content": "Hello~"}
+            ]
+        else:
+            messages = messages
         tts_url = "http://43.128.47.234:5001/tts"
         def send_text_to_tts(text):
             # 准备数据和请求
@@ -370,18 +809,21 @@ label start2:
 
 # This function splits the text by sentence enders and yields the parts
         def split_by_punctuation(text, max_length=20):
-    # Define the regex pattern for sentence enders
+            # 定义用于句子结束符的正则表达式
             pattern = re.compile(r'。|！|？|!|\?')
             start = 0
             for match in pattern.finditer(text):
                 end = match.end()
-        # Yield the sentence part
-                yield text[start:end]
+                # 获取句子部分并去除所有换行符和空格
+                sentence = text[start:end].replace("\n", "").replace(" ", "")
+                # 返回处理后的句子
+                yield sentence
                 start = end
-    # Yield any remaining text after the last punctuation mark
+            # 返回最后一个标点符号后的任何剩余文本
             if start < len(text):
-                yield text[start:]
-        # 这个函数检查文本中是否含有关键词，并返回对应的图像文件名
+                sentence = text[start:].replace("\n", "").replace(" ", "")
+                yield sentence
+                # 这个函数检查文本中是否含有关键词，并返回对应的图像文件名
         def get_image_for_keywords(text):
             text = text.lower()
             for keyword, image_file in keyword_to_image.items():
@@ -407,6 +849,7 @@ label start2:
             renpy.pause(0.2)
             config.keymap['dismiss'] = None
             messages.append({"role": "user", "content": to_gpt})
+            conversation_log.append("冈部伦太郎： 『" + user_input+"』\n")
             if check_internet_connection():
             # 原有的API调用代码
               try:
@@ -448,7 +891,22 @@ label start2:
                     audio_file_path = os.path.join(audio_folder,myuuid+".ogg")
                     audio_tts = os.path.join("audio_temp/",myuuid+".ogg")
                     folder_path = "audio_temp"
-                    audio_file = send_text_to_tts(part)
+                    part_nihon = re.sub(r'牧濑红莉栖', 'makise kurisu', part, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'牧濑', 'makise', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'amadeus', '“amadeus', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'红莉栖', 'kurisu', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'steinsgate', 'steinsgate', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'steins;gate', 'steinsgate', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'steins；gate', 'steinsgate', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'スタインズゲート', 'steinsgate', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'命运石之门', 'sutainzugeto', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'石头门', 'sutainzugeto', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'冈部伦太郎', 'okabe rintairo', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'真有理', 'mayuri', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'椎名', 'shiina', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'篝', 'kagari', part_nihon, flags=re.IGNORECASE)
+                    part_nihon = re.sub(r'阿万音铃羽', 'amane suzuha', part_nihon, flags=re.IGNORECASE)
+                    audio_file = send_text_to_tts(part_nihon)
                     url = os.path.join("https://dfsteve.top/tts/",myuuid+".ogg")
                     game_directory = config.gamedir
                     destination = os.path.join(game_directory, "audio_temp",myuuid+".ogg")
@@ -469,17 +927,27 @@ label start2:
                     except Exception as e:
                         renpy.jump("error")
                     voice(audio_tts)
-                    e(part)
+                    e(part_nihon)
+                    conversation_log.append("Amadeus：『"+part+"』\n")
+                    persistent.gpt_log = conversation_log
                     renpy.pause(0.3)
+                    last_variable = conversation_log[-1]
+                    last_variable_value_tuple1 = tuple(last_variable)
                     if os.path.exists(audio_file):
                        os.remove(audio_file)
                 else:
+                    print("hello")
                     if voice_file is not None:
                        voice(voice_file, tag=None)
                     else:
                        voice("ask_me_whatever.ogg",tag=None)
                     e(part)
+                    conversation_log.append("Amadeus：『"+part+"』\n")
+                    persistent.gpt_log = conversation_log
                     renpy.pause(0.3)
-
-
+                    last_variable = conversation_log[-1]
+                    last_variable_value_tuple1 = tuple(last_variable)
+        renpy.jump(start4)
+label start4:
+    jump start3
     return

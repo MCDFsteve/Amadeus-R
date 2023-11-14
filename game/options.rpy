@@ -3,48 +3,185 @@
 
 ## 游戏版本号。
 $ persistent.vits = True
-define config.version = "1.3.1"
-define version = "·新增了AI语音，可在设置里切换。\n·新增了bgm音量大小调节模块。"
+define config.version = "1.4.1"
+define version = "·新增了存读档系统和历史记录系统！！！\n·化了设置菜单排版，作者信息移到了 关于。\n·微调了语音系统，现在包括人名，作品名等一些专有名词不会念错了。\n·更多细微调整。"
 ## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
 ## 在适用的时候您可能需要对其取消注释。
+screen gpt_save:
+    add renpy.store.random_bg
+    add "black1"
+    vbox:
+        xpos 0.1
+        ypos 0.1
+        spacing 30
+        if persistent.save1:
+           textbutton ("「空存档位1」") action [Function(save_conversation_log1),SetVariable("persistent.save1",False),Function(update_button_name1),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name1]」") action [Function(save_conversation_log1),Function(update_button_name1),SetVariable("persistent.ontime",True)]
+        if persistent.save2:
+           textbutton ("「空存档位2」") action [Function(save_conversation_log2),SetVariable("persistent.save2",False),Function(update_button_name2),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name2]」") action [Function(save_conversation_log2),Function(update_button_name2),SetVariable("persistent.ontime",True)]
+        if persistent.save3:
+           textbutton ("「空存档位3」") action [Function(save_conversation_log3),SetVariable("persistent.save3",False),Function(update_button_name3),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name3]」") action [Function(save_conversation_log3),Function(update_button_name3),SetVariable("persistent.ontime",True)]
+        if persistent.save4:
+           textbutton ("「空存档位4」") action [Function(save_conversation_log4),SetVariable("persistent.save4",False),Function(update_button_name4),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name4]」") action [Function(save_conversation_log4),Function(update_button_name4),SetVariable("persistent.ontime",True)]
+        if persistent.save5:
+           textbutton ("「空存档位5」") action [Function(save_conversation_log5),SetVariable("persistent.save5",False),Function(update_button_name5),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name5]」") action [Function(save_conversation_log5),Function(update_button_name5),SetVariable("persistent.ontime",True)]
+        if persistent.save6:
+           textbutton ("「空存档位6」") action [Function(save_conversation_log6),SetVariable("persistent.save6",False),Function(update_button_name6),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name6]」") action [Function(save_conversation_log6),Function(update_button_name6),SetVariable("persistent.ontime",True)]
+        if persistent.save7:
+           textbutton ("「空存档位7」") action [Function(save_conversation_log7),SetVariable("persistent.save7",False),Function(update_button_name7),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name7]」") action [Function(save_conversation_log7),Function(update_button_name7),SetVariable("persistent.ontime",True)]
+        if persistent.save8:
+           textbutton ("「空存档位8」") action [Function(save_conversation_log8),SetVariable("persistent.save8",False),Function(update_button_name8),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name8]」") action [Function(save_conversation_log8),Function(update_button_name8),SetVariable("persistent.ontime",True)]
+        if persistent.save9:
+           textbutton ("「空存档位9」") action [Function(save_conversation_log9),SetVariable("persistent.save9",False),Function(update_button_name9),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name9]」") action [Function(save_conversation_log9),Function(update_button_name9),SetVariable("persistent.ontime",True)]
+        if persistent.save10:
+           textbutton ("「空存档位10」") action [Function(save_conversation_log10),SetVariable("persistent.save10",False),Function(update_button_name10),SetVariable("persistent.ontime",True)]
+        else:
+           textbutton ("「[persistent.save_name10]」") action [Function(save_conversation_log10),Function(update_button_name10),SetVariable("persistent.ontime",True)]
+    vbox:
+        xpos 0
+        ypos 0.9
+        textbutton ("*点我返回") action Return()
+screen gpt_load:
+    add renpy.store.random_bg
+    add "black1"
+    vbox:
+        xpos 0.1
+        ypos 0.1
+        spacing 30
+        if persistent.save1:
+           textbutton ("「空存档位1」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name1]) action Function(load_conversation_log1)
+        if persistent.save2:
+           textbutton ("「空存档位2」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name2]) action Function(load_conversation_log2)
+        if persistent.save3:
+           textbutton ("「空存档位3」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name3]) action Function(load_conversation_log3)
+        if persistent.save4:
+           textbutton ("「空存档位4」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name4]) action Function(load_conversation_log4)
+        if persistent.save5:
+           textbutton ("「空存档位5」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name5]) action Function(load_conversation_log5)
+        if persistent.save6:
+           textbutton ("「空存档位6」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name6]) action Function(load_conversation_log6)
+        if persistent.save7:
+           textbutton ("「空存档位7」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name7]) action Function(load_conversation_log7)
+        if persistent.save8:
+           textbutton ("「空存档位8」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name8]) action Function(load_conversation_log8)
+        if persistent.save9:
+           textbutton ("「空存档位9」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name9]) action Function(load_conversation_log9)
+        if persistent.save10:
+           textbutton ("「空存档位10」") action ShowMenu("gpt_load")
+        else:
+           textbutton ([persistent.save_name10]) action Function(load_conversation_log10)
+    vbox:
+        xpos 0
+        ypos 0.9
+        textbutton ("*点我返回") action Return()
+screen gpt_history():
+    add renpy.store.random_bg
+    add "black1"
+    viewport id "gpt_history_viewport":
+        scrollbars "vertical"  # 添加垂直滚动条
+        draggable True  # 允许玩家拖动滚动条
+        mousewheel True 
+        vbox:
+            xpos 0.1 
+            ypos 0.1
+            style "history_gpt"
+            if conversation_log == []:
+                text "\n\n\n\n\n\n\n\n\n\n\n                                                                        这里还什么都没有。" xcenter 0.5 ycenter 0.5
+            else:
+                for line in conversation_log:
+                    text line
+    add "black1" ypos 0.85 alpha 0.5
+    vbox:
+        xpos 0
+        ypos 0.9
+        textbutton ("*点我返回") action Return()
 screen time:
     vbox:
         xpos 0.016
         ypos 0.04
         imagebutton idle "images/time.png" hover "images/time.png" :
              action ShowMenu("creater")
-init python:
-    if persistent.vits:
-        vits_switch = "AI语音"
-    else:
-        vits_switch = "关键词回复"
 style custom_slider_style:
     xmaximum 600
-screen creater:
-    python:
-        if persistent.vits:
-            vits_status = "AI语音"
-        else:
-            vits_status = "关键词回复"
+style history_gpt:
+    xmaximum 1300
+screen gpt_about:
     add "BG40N2"
     vbox:
         xpos 0
         ycenter 0.5
+        spacing 10
         text "Amadeus"
         text "版本-[config.version]"
         text "作者：{a=https://dfsteve.top}戴夫邻居史蒂夫DFsteve{/a}"
         text "{a=https://github.com/MCDFsteve/AmadeusByRenPyAndChatGPT}点此查看GitHub{/a}"
         text "版本更新内容："
         text "[version]"
-        text "\n"
-        textbutton ("关闭AI语音（使用关键词回复，会更快）")  action SetVariable("persistent.vits",False)
-        textbutton ("打开AI语音（即时生成语音对话，会更慢）")  action SetVariable("persistent.vits",True)
-        text "\n当前语音状态：\n[vits_status]"
-        text "\nBGM音量调节"
+    vbox:
+        xpos 0
+        ypos 0.9
+        textbutton ("*点我返回") action Return()
+screen creater:
+    python:
+        if persistent.vits:
+            vits_status = "-AI语音"
+        else:
+            vits_status = "-关键词回复"
+    add "BG40N2"
+    vbox:
+        xpos 0
+        ycenter 0.5
+        spacing 10
+        textbutton ("*关闭AI语音（使用关键词回复，会更快）")  action SetVariable("persistent.vits",False)
+        textbutton ("*打开AI语音（即时生成语音对话，会更慢）")  action SetVariable("persistent.vits",True)
+        text "*当前语音状态：\n[vits_status]"
+        text "*BGM音量调节"
         hbox:
             style "custom_slider_style"
             bar value Preference("music volume")
-        textbutton ("\n\n点我返回") action Return()
+        textbutton ("*保存") action ShowMenu("gpt_save")
+        textbutton ("*读取") action ShowMenu("gpt_load")
+        textbutton ("*对话记录") action ShowMenu("gpt_history")
+        textbutton ("*关于Amadeus") action ShowMenu("gpt_about")
+    vbox:
+        xpos 0
+        ypos 0.9
+        textbutton ("*点我返回") action Return()
     key "pad_b_press" action Return()
     key "game_menu" action Return()
 define audio.hello = "audio/hello.ogg"
@@ -562,8 +699,10 @@ init python:
     build.classify('**.rpy', None)
     build.classify('**.save', None)
     build.classify('audio_temp/', None)
+    build.classify('gpt_save/', None)
     build.classify('saves/**.save', None)
     build.classify('**.txt', None)
+    build.classify('**.json', None)
     build.classify('**.md', None)
     build.classify('saves/persistent', None)
 

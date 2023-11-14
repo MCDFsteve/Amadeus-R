@@ -3,28 +3,141 @@
 While running game code:
   File "renpy/common/00start.rpy", line 237, in script call
     call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 329, in script
-    python:
-  File "game/script.rpy", line 471, in <module>
-    voice(audio_tts,volume=1.5)
-TypeError: voice() got an unexpected keyword argument 'volume'
+  File "game/script.rpy", line 337, in script
+    e "Hello~"
+  File "renpy/common/00start.rpy", line 237, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 337, in script
+    e "Hello~"
+  File "renpy/common/00action_menu.rpy", line 118, in __call__
+    renpy.call_in_new_context("_game_menu", *self.args, _game_menu_screen=screen, **self.kwargs)
+  File "renpy/common/00gamemenu.rpy", line 174, in script
+    $ ui.interact()
+  File "renpy/common/00gamemenu.rpy", line 174, in script
+    $ ui.interact()
+  File "renpy/common/00gamemenu.rpy", line 174, in <module>
+    $ ui.interact()
+  File "game/options.rpy", line 61, in execute
+    screen gpt_load:
+  File "game/options.rpy", line 61, in execute
+    screen gpt_load:
+  File "game/options.rpy", line 64, in execute
+    vbox:
+  File "game/options.rpy", line 92, in execute
+    if persistent.save7:
+  File "game/options.rpy", line 95, in execute
+    textbutton ([persistent.save_name7]) action Function(load_conversation_log7)
+Exception: Cannot display None as text.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/bootstrap.py", line 275, in bootstrap
+    renpy.main.main()
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/main.py", line 670, in main
+    run(restart)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/main.py", line 144, in run
+    renpy.execution.run_context(True)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/execution.py", line 955, in run_context
+    context.run()
   File "renpy/common/00start.rpy", line 237, in script call
     call _splashscreen from _call_splashscreen_1
-  File "game/script.rpy", line 329, in script
-    python:
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1138, in execute
+  File "game/script.rpy", line 337, in script
+    e "Hello~"
+  File "/home/tom/ab/renpy-build-fix/tmp/install.linux-x86_64/lib/python3.9/site-packages/future/utils/__init__.py", line 444, in raise_
+  File "renpy/common/00start.rpy", line 237, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 337, in script
+    e "Hello~"
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/ast.py", line 930, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/exports.py", line 1474, in say
+    who(what, *args, **kwargs)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/character.py", line 1352, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/character.py", line 1003, in do_display
+    display_say(who,
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/character.py", line 693, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 3582, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 4543, in interact_core
+    rv = root_widget.event(ev, x, y, 0)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/layout.py", line 1179, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/layout.py", line 1179, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/layout.py", line 1179, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/screen.py", line 770, in event
+    rv = self.child.event(ev, x, y, st)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/layout.py", line 1179, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/layout.py", line 1179, in event
+    rv = i.event(ev, x - xo, y - yo, cst)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/behavior.py", line 1142, in event
+    return handle_click(self.clicked)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/behavior.py", line 1075, in handle_click
+    rv = run(action)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/behavior.py", line 379, in run
+    return action(*args, **kwargs)
+  File "renpy/common/00action_menu.rpy", line 118, in __call__
+    renpy.call_in_new_context("_game_menu", *self.args, _game_menu_screen=screen, **self.kwargs)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/game.py", line 349, in call_in_new_context
+    return renpy.execution.run_context(False)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/execution.py", line 955, in run_context
+    context.run()
+  File "renpy/common/00gamemenu.rpy", line 174, in script
+    $ ui.interact()
+  File "/home/tom/ab/renpy-build-fix/tmp/install.linux-x86_64/lib/python3.9/site-packages/future/utils/__init__.py", line 444, in raise_
+  File "renpy/common/00gamemenu.rpy", line 174, in script
+    $ ui.interact()
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/ast.py", line 1138, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\python.py", line 1122, in py_exec_bytecode
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/python.py", line 1122, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 471, in <module>
-    voice(audio_tts,volume=1.5)
-TypeError: voice() got an unexpected keyword argument 'volume'
+  File "renpy/common/00gamemenu.rpy", line 174, in <module>
+    $ ui.interact()
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 3582, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 4055, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 684, in visit_all
+    d.visit_all(callback, seen)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 684, in visit_all
+    d.visit_all(callback, seen)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 684, in visit_all
+    d.visit_all(callback, seen)
+  [Previous line repeated 1 more time]
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/screen.py", line 476, in visit_all
+    callback(self)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/core.py", line 4055, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/screen.py", line 487, in per_interact
+    self.update()
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/display/screen.py", line 680, in update
+    self.screen.function(**self.scope)
+  File "game/options.rpy", line 61, in execute
+    screen gpt_load:
+  File "game/options.rpy", line 61, in execute
+    screen gpt_load:
+  File "game/options.rpy", line 64, in execute
+    vbox:
+  File "game/options.rpy", line 92, in execute
+    if persistent.save7:
+  File "game/options.rpy", line 95, in execute
+    textbutton ([persistent.save_name7]) action Function(load_conversation_log7)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/ui.py", line 988, in _textbutton
+    text = renpy.text.text.Text(label, style=text_style, substitute=substitute, scope=scope, **text_kwargs)
+  File "/Library/Afolder/renpy-8.1.3-sdk/renpy/text/text.py", line 1612, in __init__
+    raise Exception("Cannot display {0!r} as text.".format(i))
+Exception: Cannot display None as text.
 
-Windows-10-10.0.22621 AMD64
+macOS-14.1.1-arm64-arm-64bit arm64
 Ren'Py 8.1.3.23091805
-Amadeus 1.3.0
-Sun Nov 12 23:19:08 2023
+Amadeus 1.3.1
+Tue Nov 14 03:52:21 2023
