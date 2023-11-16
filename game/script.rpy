@@ -927,7 +927,7 @@ label start3:
                     except Exception as e:
                         renpy.jump("error")
                     voice(audio_tts)
-                    e(part_nihon)
+                    e(part)
                     conversation_log.append("Amadeus：『"+part+"』\n")
                     persistent.gpt_log = conversation_log
                     renpy.pause(0.3)
