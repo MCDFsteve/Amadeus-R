@@ -78,8 +78,8 @@ init python:
         except Exception as e:
             print("连接失败：", e)
             return None
-    hanashi = get_amadeus('http://api.dfsteve.top/amadeus')
-    apikey = get_data_from_server('http://api.dfsteve.top/api_key_endpoint')
+    hanashi = get_amadeus('http://api2.dfsteve.top/amadeus')
+    apikey = get_data_from_server('http://api2.dfsteve.top/api_key_endpoint')
     keyword_to_voice = {
         "你好": ["hello.ogg","pleased_to_meet_you.ogg","what_do_you_want.ogg"],
         "hello": ["hello.ogg","what_do_you_want.ogg"],
