@@ -497,15 +497,11 @@ translate None strings:
     old "Do you trust the device the save was created on? You should only choose yes if you are the device's sole user."
     new "您是否信任创建此存档的设备？只有当您是设备的唯一用户时，才应选择是。"
 
-    # renpy/common/00keymap.rpy:310
+    # renpy/common/00keymap.rpy:322
     old "Failed to save screenshot as %s."
     new "截图保存到以下位置时失败：%s"
 
-    # renpy/common/00keymap.rpy:315
-    old "Failed to save  as %s."
-    new "Failed to save  as %s."
-
-    # renpy/common/00keymap.rpy:322
+    # renpy/common/00keymap.rpy:334
     old "Saved screenshot as %s."
     new "截图已保存到以下位置：%s"
 

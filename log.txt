@@ -1,35 +1,89 @@
-Tue Nov 14 15:36:40 2023
-macOS-14.1.1-arm64-arm-64bit
+Sun Nov 26 00:28:41 2023
+Windows-10-10.0.19041
 Ren'Py 8.1.3.23091805
  
 
-Bootstrap to the start of init.init. took 0.02s
+Bootstrap to the start of init.init. took 0.03s
 Early init. took 0.00s
-Loader init. took 0.00s
-Loading error handling. took 0.02s
-Loading script. took 0.04s
-Loading save slot metadata. took 0.02s
+Loader init. took 0.02s
+Loading error handling. took 0.03s
+Loading script. took 0.19s
+Loading save slot metadata. took 0.03s
 Loading persistent. took 0.00s
-Failed to initialize steam: Exception('Init returned false.')
-嘟嘟噜
- - Init at game/script.rpy:31 took 0.88500 s.
-Running init code. took 0.93s
-Loading analysis data. took 0.02s
+Running init code. took 0.14s
+Loading analysis data. took 0.01s
 Analyze and compile ATL. took 0.01s
 Reloading save slot metadata. took 0.02s
 Index archives took 0.00s
-Dump and make backups. took 0.03s
+Backing up script files to 'C:\\Users\\Administrator\\AppData\\Roaming/RenPy/backups\\RenAmadeus':
+Dump and make backups. took 0.04s
 Cleaning cache. took 0.00s
 Making clean stores. took 0.00s
-Initial gc. took 0.02s
+Initial gc. took 0.03s
 DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
 Creating interface object. took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.02s
+Init translation took 0.04s
 Build styles took 0.00s
 Load screen analysis took 0.01s
-Analyze screens took 0.00s
-Save screen analysis took 0.00s
-Prepare screens took 0.03s
+Analyze screens took 0.01s
+Save screen analysis took 0.02s
+Prepare screens took 0.08s
 Save pyanalysis. took 0.00s
-Save bytecode. took 0.00s
+Save bytecode. took 0.03s
+Running _start took 0.00s
+Performance test:
+Interface start. took 0.07s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'Intel'"
+Renderer: b'Intel(R) UHD Graphics 630'
+Version: b'4.6.0 - Build 30.0.101.1340'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
+["E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/89098453-bba3-49ca-b5a3-6cceae64d16c.ogg", "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/f82e0b6b-814e-4e57-b52e-3a702fc49b40.ogg", "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/e57ccffe-63e1-4330-9b00-645bacc3965d.ogg", "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/f0f7ef77-7bdb-4f57-a320-a5cf945bc4d5.ogg", "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/9ee1a79b-8b6e-4567-a4bc-134a93cb0fee.ogg", "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/3386baaa-b7c3-47c1-be8c-24cb41664bcd.ogg"]
+
+Full traceback:
+  File "game/script.rpy", line 134, in script
+    e "[w!q]"
+  File "F:\renpy-8.0.3-sdk\renpy\ast.py", line 930, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "F:\renpy-8.0.3-sdk\renpy\exports.py", line 1474, in say
+    who(what, *args, **kwargs)
+  File "F:\renpy-8.0.3-sdk\renpy\character.py", line 1352, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "F:\renpy-8.0.3-sdk\renpy\character.py", line 1003, in do_display
+    display_say(who,
+  File "F:\renpy-8.0.3-sdk\renpy\character.py", line 693, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "F:\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "F:\renpy-8.0.3-sdk\renpy\display\core.py", line 3582, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "F:\renpy-8.0.3-sdk\renpy\display\core.py", line 4379, in interact_core
+    renpy.audio.audio.periodic()
+  File "F:\renpy-8.0.3-sdk\renpy\audio\audio.py", line 1224, in periodic
+    raise_(exc[0], exc[1], exc[2])
+  File "/home/tom/ab/renpy-build-fix/tmp/install.linux-x86_64/lib/python3.9/site-packages/future/utils/__init__.py", line 444, in raise_
+  File "F:\renpy-8.0.3-sdk\renpy\audio\audio.py", line 1202, in periodic_thread_main
+    periodic_pass()
+  File "F:\renpy-8.0.3-sdk\renpy\audio\audio.py", line 1144, in periodic_pass
+    c.periodic()
+  File "F:\renpy-8.0.3-sdk\renpy\audio\audio.py", line 534, in periodic
+    topf = load(filename)
+  File "F:\renpy-8.0.3-sdk\renpy\audio\audio.py", line 72, in load
+    rv = renpy.loader.load(fn, directory="audio")
+  File "F:\renpy-8.0.3-sdk\renpy\loader.py", line 824, in load
+    raise Exception("Backslash in filename, use '/' instead: %r" % name)
+Exception: Backslash in filename, use '/' instead: "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/89098453-bba3-49ca-b5a3-6cceae64d16c.ogg"
+
+While running game code:
+  File "game/script.rpy", line 134, in script
+    e "[w!q]"
+Exception: Backslash in filename, use '/' instead: "E:\\Ren'py\\RenAmadeus\\game\\audio/ai_audio/89098453-bba3-49ca-b5a3-6cceae64d16c.ogg"
