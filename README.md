@@ -1,7 +1,7 @@
 # Amadeus-R
 ## Description
 使用Renpy游戏引擎制作的《命运石之门 0》中的角色Amadeus红莉栖，基于ChatGPT实现。界面参照《命运石之门 0》。
-## :CD: 使用
+## :cd: 使用
 请在Release中下载适合您的版本
 
 ---
