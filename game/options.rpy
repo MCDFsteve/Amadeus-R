@@ -1,7 +1,7 @@
 ﻿## 此文件包含有可自定义您游戏的设置。
 
 ## 游戏版本号。
-define config.version = "1.5.0"
+define config.version = "1.5.1"
 
 define gui.interface_text_outlines = [(1,"#000000",1,1)]
 define gui.input_text_outlines = [(1,"#000000",1,1)]
@@ -36,7 +36,7 @@ Amadeus
 
 版本
 
-1.5.0
+1.5.1
 
 项目贡献者
 
@@ -152,7 +152,7 @@ default preferences.afm_time = 15
 ##
 ## 该语句通常不应变更，若要变更，应为有效字符串而不是表达式。
 
-define config.save_directory = "Amadeus-1699083661"
+define config.save_directory = "Amadeus-save"
 
 
 ## 图标 ##########################################################################
@@ -186,18 +186,10 @@ init python:
 
     ## 将文件列为 None 来使其从构建的发行版中排除。
 
-    build.classify('**~', None)
     build.classify('**.bak', None)
-    build.classify('**/.**', None)
-    build.classify('**/#**', None)
-    build.classify('**/thumbs.db', None)
+    build.classify('**thumbs.db', None)
     build.classify('**.rpy', None)
     build.classify('**.save', None)
-    build.classify('saves/**.save', None)
-    build.classify('**.txt', None)
-    build.classify('**.json', None)
-    build.classify('**.md', None)
-    build.classify('saves/persistent', None)
 
     ## 若要封装文件，需将其列为“archive”。打包，使其无法被玩家更改
 
@@ -218,6 +210,7 @@ init python:
     ## 和 ZIP 文件中。
 
     build.documentation('*.html')
+    build.documentation('*.md')
     build.documentation('*.txt')
 
 

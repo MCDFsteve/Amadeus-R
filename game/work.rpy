@@ -605,7 +605,7 @@ init -1 python:
                 "messages": msg
             }
 
-            response = requests.post(persistent.api, headers=headers, data=json.dumps(data))
+            response = requests.post(persistent.api, headers=headers, data=json.dumps(data), timeout=10)
 
             try:
                 completion = response.json()["choices"][0]["message"]
@@ -614,11 +614,13 @@ init -1 python:
             except Exception as e:
                 self.msg = False
                 self.error = e
+                self.waiting = False
+                return
             
             self.waiting = False
             renpy.notify("接收到回复，单击继续......")
 
-        def get_data(self, url, headers=None, timeout=None):
+        def get_data(self, url, headers=None, timeout=10):
             try:
                 response = requests.get(url, headers=headers, timeout=timeout)
             except Exception as e:
@@ -641,15 +643,13 @@ init -1 python:
                 "uuid": myuuid
             }
 
-            resp = requests.post("http://43.128.47.234:5001/tts", headers=headers, data=json.dumps(data))
+            resp = requests.post("http://43.128.47.234:5001/tts", headers=headers, data=json.dumps(data), timeout=6)
             if not resp.status_code == 200:
                 self.current_vc = None
-                return
 
-            resp = requests.get(f"https://dfsteve.top/tts/{myuuid}.ogg")
+            resp = requests.get(f"https://dfsteve.top/tts/{myuuid}.ogg", timeout=6)
             if not resp.status_code == 200:
                 self.current_vc = None
-                return
             
             path = config.gamedir + f"\\audio\\ai_audio\\{myuuid}.ogg"
             path = re.sub(r'\\', "/", path)
