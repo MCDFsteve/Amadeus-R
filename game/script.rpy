@@ -125,7 +125,7 @@ label start:
 
         $ words = chat.parse_words(chat.msg)
 
-        default i = 0
+        $ i = 0
         while i <= len(words)-1:
             python:
                 w = words[i]
