@@ -193,8 +193,6 @@ init python:
     build.classify('**/thumbs.db', None)
     build.classify('**.rpy', None)
     build.classify('**.save', None)
-    build.classify('audio_temp/', None)
-    build.classify('gpt_save/', None)
     build.classify('saves/**.save', None)
     build.classify('**.txt', None)
     build.classify('**.json', None)
@@ -203,6 +201,8 @@ init python:
 
     ## 若要封装文件，需将其列为“archive”。打包，使其无法被玩家更改
 
+    build.classify('game/**.png', 'archive')
+    build.classify('game/**.keystore', 'archive')
     build.classify('game/**.png', 'archive')
     build.classify('game/**.jpg', 'archive')
     build.classify('game/**.rpyc', 'archive')

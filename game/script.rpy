@@ -64,12 +64,11 @@ label main_menu:
 # 退出前清除缓存
 label quit:
     python:
-        if persistent.auto_clear_cache:
-            import os
-            cache_path = config.gamedir + f"\\audio\\ai_audio"
-            for file in os.listdir(cache_path):
-                file = f"{cache_path}\\{file}"
-                os.remove(file)
+        import os
+        cache_path = config.gamedir + f"\\audio\\ai_audio"
+        for file in os.listdir(cache_path):
+            file = f"{cache_path}\\{file}"
+            os.remove(file)
     return
 
 
