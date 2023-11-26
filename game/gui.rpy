@@ -28,25 +28,25 @@ define config.check_conflicting_properties = True
 define gui.accent_color = '#ffffff'
 
 ## 当文本按钮既未被选中也未被悬停时使用的颜色。
-define gui.idle_color = '#ffffff'
+define gui.idle_color = '#888888'
 
 ## 小的颜色用于小的文本，需要更亮/更暗才能达到同样的效果。
 define gui.idle_small_color = '#aaaaaa'
 
 ## 当按钮和滑条被悬停时使用的颜色。
-define gui.hover_color = '#d6d6d6'
+define gui.hover_color = '#e0a366'
 
 ## 当文本按钮被选中但非焦点时使用的颜色。当一个按钮为当前屏幕或设置选项值时，会
 ## 处于选中状态。
-define gui.selected_color = '#878787'
+define gui.selected_color = '#ffffff'
 
 ## 当文本按钮无法被选择时使用的颜色。
-define gui.insensitive_color = '#6767677f'
+define gui.insensitive_color = '#8888887f'
 
 ## 滑条未填充的部分使用的颜色。这些颜色不直接使用，但在重新生成条形图像文件时使
 ## 用。
-define gui.muted_color = '#ffffff'
-define gui.hover_muted_color = '#ffffff'
+define gui.muted_color = '#512800'
+define gui.hover_muted_color = '#7a3d00'
 
 ## 对话和菜单选择文本使用的颜色。
 define gui.text_color = '#ffffff'
@@ -87,7 +87,7 @@ define gui.title_text_size = 75
 
 ## 标题菜单和游戏菜单使用的图像。
 define gui.main_menu_background = "gui/main_menu.png"
-define gui.game_menu_background = "gui/game_menu.png"
+define gui.game_menu_background = "BG40N2"
 
 
 ## 对话 ##########################################################################
