@@ -65,10 +65,11 @@ label main_menu:
 label quit:
     python:
         import os
-        cache_path = config.gamedir + f"\\audio\\ai_audio"
-        for file in os.listdir(cache_path):
-            file = f"{cache_path}\\{file}"
-            os.remove(file)
+        cache_path = os.path.join(config.gamedir, "/audio/ai_audio")
+        if os.path.exists(cache_path):
+            for file in os.listdir(cache_path):
+                file = f"{cache_path}/{file}"
+                os.remove(file)
     return
 
 
@@ -109,24 +110,20 @@ label start:
 
     # 聊天主循环
     while True:
-
         python:
             # 用户输入
             user_input = renpy.input("", length=100)
             messages.append({"role": "user", "content": user_input})
             renpy.invoke_in_thread(chat.chat, messages)
-        
-        me "[user_input!q]"
-
+            me("[user_input!q]")
+            
         while chat.waiting:
             e "......"
 
-        if chat.msg:
-            $ msg = chat.msg[-1]["content"]
-        else:
-            call conn_error(err_info=chat.error)
+        if not chat.msg:
+            call conn_error(err_info=chat.error) from _call_conn_error
 
-        $ words = chat.parse_words(msg)
+        $ words = chat.parse_words(chat.msg)
 
         default i = 0
         while i <= len(words)-1:
@@ -138,7 +135,7 @@ label start:
             if persistent.voice_source == "ai":
                 $ renpy.invoke_in_thread(chat.get_ai_voice, w)
                 while chat.waiting:
-                    e "......" 
+                    e "......"
                 $ vc = chat.current_vc if chat.current_vc else chat.get_chat_state(w, Chat.CHAT_VOICE)
             else:
                 $ vc = chat.get_chat_state(w, Chat.CHAT_VOICE)
