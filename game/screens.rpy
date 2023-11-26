@@ -229,35 +229,14 @@ style choice_button_text is default:
 ##
 ## 快捷菜单显示于游戏内，以便于访问游戏外的菜单。
 
-screen quick_menu():
-
     ## 确保该菜单出现在其他屏幕之上，
-    zorder 100
-
-    if quick_menu:
-
-        hbox:
-            style_prefix "quick"
-
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("回退") action Rollback()
-            textbutton _("历史") action ShowMenu('history')
-            textbutton _("快进") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("自动") action Preference("auto-forward", "toggle")
-            textbutton _("保存") action ShowMenu('save')
-            textbutton _("快存") action QuickSave()
-            textbutton _("快读") action QuickLoad()
-            textbutton _("设置") action ShowMenu('preferences')
 
 
 ## 此代码确保只要用户没有主动隐藏界面，就会在游戏中显示 quick_menu 屏幕。
-init python:
-    config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
-
+default quick_menu = False
+screen quick_menu():
+    add "black"
 style quick_button is default
 style quick_button_text is button_text
 
@@ -723,14 +702,21 @@ screen preferences():
                 vbox:
                     style_prefix "radio"
                     label _("语音")
-                    textbutton _("文本匹配") action SetField(chat, "voice_source", "text")
-                    textbutton _("AI实时语音") action SetField(chat, "voice_source", "ai")
+                    textbutton _("文本匹配") action SetField(persistent, "voice_source", "text")
+                    textbutton _("AI实时语音") action SetField(persistent, "voice_source", "ai")
 
                 vbox:
                     style_prefix "radio"
                     label _("ChatGPT API")
-                    textbutton _("默认") action SetField(chat, "api", "http://prima.wiki/proxy.php")
-                    textbutton _("新增") action SetField(chat, "api", "https://apiserver.dfsteve.top")
+                    textbutton _("4千字上下文") action SetField(persistent, "api", "http://prima.wiki/proxy.php")
+                    textbutton _("16千字上下文") action SetField(persistent, "api", "https://apiserver.dfsteve.top")
+
+                vbox:
+                    style_prefix "radio"
+                    label _("自动清除缓存")
+                    textbutton _("是") action SetField(persistent, "auto_clear_cache", True)
+                    textbutton _("否") action SetField(persistent, "auto_clear_cache", False)
+
 
 
                 ## 可在此处添加 radio_pref 或 check_pref 类型的额外 vbox，以添加
@@ -1503,23 +1489,6 @@ style pref_vbox:
 
 ## 由于可能没有鼠标，我们将快捷菜单替换为一个使用更少、更大按钮的版本，这样更容
 ## 易触摸。
-screen quick_menu():
-    variant "touch"
-
-    zorder 100
-
-    if quick_menu:
-
-        hbox:
-            style_prefix "quick"
-
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("回退") action Rollback()
-            textbutton _("快进") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("自动") action Preference("auto-forward", "toggle")
-            textbutton _("菜单") action ShowMenu()
 
 
 style window:

@@ -28,12 +28,6 @@ transform girl:
     ycenter 0.39
     zoom 0.725
 
-style custom_slider_style:
-    xmaximum 600
-
-style history_gpt:
-    xmaximum 1300
-
 
 # screens
 screen time:
@@ -581,8 +575,6 @@ init -1 python:
 
         def __init__(self, msg=None):
             self.character = None
-            self.api = persistent.api
-            self.voice_source = persistent.voice_source
             self.current_vc = None
             self.msg = msg
             self.error = None
@@ -612,7 +604,7 @@ init -1 python:
                 "messages": msg
             }
 
-            response = requests.post(self.api, headers=headers, data=json.dumps(data))
+            response = requests.post(persistent.api, headers=headers, data=json.dumps(data))
 
             try:
                 completion = response.json()["choices"][0]["message"]
@@ -651,14 +643,15 @@ init -1 python:
             resp = requests.post("http://43.128.47.234:5001/tts", headers=headers, data=json.dumps(data))
             if not resp.status_code == 200:
                 self.current_vc = None
-                continue
+                return
 
             resp = requests.get(f"https://dfsteve.top/tts/{myuuid}.ogg")
             if not resp.status_code == 200:
                 self.current_vc = None
-                continue
-
-            path = os.path.join(config.gamedir, f"audio\\ai_audio\\{myuuid}.ogg")
+                return
+            
+            path = config.gamedir + f"\\audio\\ai_audio\\{myuuid}.ogg"
+            path = re.sub(r'\\', "/", path)
             with open(path, "wb+") as f:
                 f.write(resp.content)
             
@@ -688,11 +681,3 @@ init -1 python:
                 words.append(last_word)
 
             return words
-
-        def __setattr__(self, key, value):
-            super().__setattr__(key, value)
-
-            if key == "voice_source":
-                persistent.voice_source = value
-            elif key == "api":
-                persistent.api = value

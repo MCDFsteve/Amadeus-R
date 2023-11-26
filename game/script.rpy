@@ -1,8 +1,9 @@
 # definitions
 define config.rollback_enabled = False
 define config.allow_skipping = False
+define quick_menu = False
 
-image connect = Text(_("Connect to Kurisu?"), size=45,color="#ff9e17", bold=True, italic=True)
+image connect = Text(_("Connect to Kurisu?"), size=45,color="#ff9e17", bold=True)
 
 define e = Character(
     "Amadeus",
@@ -18,7 +19,15 @@ define e = Character(
     what_textalign=0.0
 )
 
-define me = Character(None, ctc="hito_kotoba", ctc_position="nestled", what_yoffset=40)
+define me = Character(
+    "冈部伦太郎", 
+    ctc="hito_kotoba", 
+    ctc_position="nestled",
+    who_yoffset=-1000,
+    what_yoffset=50,
+    what_prefix='『', 
+    what_suffix='』'
+)
 define error = Character(None, ctc="hito_kotoba2", ctc_position="nestled", what_yoffset=40)
 
 define chat = Chat()
@@ -50,7 +59,18 @@ label splashscreen:
 # 取消主菜单
 label main_menu:
     return
-        
+
+
+# 退出前清除缓存
+label quit:
+    python:
+        import os
+        cache_path = config.gamedir + f"\\audio\\ai_audio"
+        for file in os.listdir(cache_path):
+            file = f"{cache_path}\\{file}"
+            os.remove(file)
+    return
+
 
 # 检查网络连接
 label conn_error(err_info):
@@ -115,12 +135,13 @@ label start:
                 img = chat.get_chat_state(w, Chat.CHAT_IMAGE)
 
             # 生成ai语音
-            if chat.voice_source == "ai":
+            if persistent.voice_source == "ai":
                 $ renpy.invoke_in_thread(chat.get_ai_voice, w)
                 while chat.waiting:
-                    e "......"
-                    
+                    e "......" 
                 $ vc = chat.current_vc if chat.current_vc else chat.get_chat_state(w, Chat.CHAT_VOICE)
+            else:
+                $ vc = chat.get_chat_state(w, Chat.CHAT_VOICE)
             
             if img:
                 $ renpy.show(img)
