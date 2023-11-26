@@ -589,7 +589,8 @@ init -1 python:
                 self.character = char_res.text
                 self.conn = True
                 renpy.notify("网络连接正常，单击继续......")
-                
+            else:
+                renpy.notify("发生异常，单击继续......")
             self.waiting = False
 
         def chat(self, msg):
@@ -605,15 +606,15 @@ init -1 python:
                 "messages": msg
             }
 
-            response = requests.post(persistent.api, headers=headers, data=json.dumps(data), timeout=10)
-
             try:
-                completion = response.json()["choices"][0]["message"]
-                messages.append(completion)
-                self.msg = messages 
+                response = requests.post(persistent.api, headers=headers, data=json.dumps(data))
+                message = response.json()["choices"][0]["message"]
+                self.msg = message["content"]
+                msg.append(message)
             except Exception as e:
                 self.msg = False
                 self.error = e
+                renpy.notify("发生异常，单击继续......")
                 self.waiting = False
                 return
             
@@ -643,13 +644,15 @@ init -1 python:
                 "uuid": myuuid
             }
 
-            resp = requests.post("http://43.128.47.234:5001/tts", headers=headers, data=json.dumps(data), timeout=6)
-            if not resp.status_code == 200:
+            try:
+                requests.post("http://43.128.47.234:5001/tts", headers=headers, data=json.dumps(data))
+                resp = requests.get(f"https://dfsteve.top/tts/{myuuid}.ogg")
+            except Exception as e:
+                self.error = e
                 self.current_vc = None
-
-            resp = requests.get(f"https://dfsteve.top/tts/{myuuid}.ogg", timeout=6)
-            if not resp.status_code == 200:
-                self.current_vc = None
+                renpy.notify("发生异常，单击继续......")
+                self.waiting = False
+                return
             
             path = config.gamedir + f"\\audio\\ai_audio\\{myuuid}.ogg"
             path = re.sub(r'\\', "/", path)
