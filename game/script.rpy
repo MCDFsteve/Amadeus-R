@@ -24,7 +24,7 @@ define me = Character(
     ctc="hito_kotoba", 
     ctc_position="nestled",
     who_yoffset=-1000,
-    what_yoffset=50,
+    what_yoffset=40,
     what_prefix='『', 
     what_suffix='』'
 )
