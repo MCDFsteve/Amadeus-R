@@ -32,7 +32,8 @@ transform girl:
 # screens
 screen time:
     vbox:
-        align (0.0, 0.0)
+        xpos 0.016
+        ypos 0.04
         imagebutton idle "images/time.png" action ShowMenu("preferences")
 
 
