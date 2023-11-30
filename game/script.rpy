@@ -49,7 +49,7 @@ label splashscreen:
 
         # 是否连接成功
         if not chat.conn:
-            renpy.call(conn_error, err_info=chat.error)
+            renpy.call("conn_error", err_info=chat.error)
 
     pause
 
