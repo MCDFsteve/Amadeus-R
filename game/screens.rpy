@@ -707,12 +707,6 @@ screen preferences():
 
                 vbox:
                     style_prefix "radio"
-                    label _("ChatGPT API")
-                    textbutton _("4千字上下文") action SetField(persistent, "api", "http://prima.wiki/proxy.php")
-                    textbutton _("16千字上下文") action SetField(persistent, "api", "https://apiserver.dfsteve.top")
-
-                vbox:
-                    style_prefix "radio"
                     label _("自动清除缓存")
                     textbutton _("是") action SetField(persistent, "auto_clear_cache", True)
                     textbutton _("否") action SetField(persistent, "auto_clear_cache", False)
@@ -865,26 +859,29 @@ screen history():
 
         for h in _history_list:
 
-            window:
+            $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+            if what != "『......』":
 
-                ## 此代码可确保如果 history_height 为 None 时仍可正常显示条目。
-                has fixed:
-                    yfit True
+                window:
 
-                if h.who:
+                    ## 此代码可确保如果 history_height 为 None 时仍可正常显示条目。
+                    has fixed:
+                        yfit True
 
-                    label h.who:
-                        style "history_name"
+                    
+                    if h.who:
+
+                        label h.who:
+                            style "history_name"
+                            substitute False
+
+                            ## 从 Character 对象中获取叙述角色的文字颜色，如果设置了
+                            ## 的话。
+                            if "color" in h.who_args:
+                                text_color h.who_args["color"]
+
+                    text what:
                         substitute False
-
-                        ## 从 Character 对象中获取叙述角色的文字颜色，如果设置了
-                        ## 的话。
-                        if "color" in h.who_args:
-                            text_color h.who_args["color"]
-
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                text what:
-                    substitute False
 
         if not _history_list:
             label _("尚无对话历史记录。")

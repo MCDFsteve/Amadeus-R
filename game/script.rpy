@@ -15,8 +15,7 @@ define e = Character(
     ctc="hito_kotoba",
     ctc_position="fixed", 
     who_yoffset=-1000,
-    what_xoffset=-15,
-    what_textalign=0.0
+    what_textalign=0.5
 )
 
 define me = Character(
@@ -28,7 +27,7 @@ define me = Character(
     what_prefix='『', 
     what_suffix='』'
 )
-define error = Character(None, ctc="hito_kotoba2", ctc_position="nestled", what_yoffset=40)
+define n = Character(None, ctc="hito_kotoba2", ctc_position="nestled", what_yoffset=40)
 
 define chat = Chat()
 
@@ -39,17 +38,7 @@ label splashscreen:
     scene black
     show logo2 at lo
     show connect at con
-
-    # 初始化
-    python:
-        renpy.invoke_in_thread(chat.init)
-        # 非阻塞式等待（程序不会白屏卡死）
-        while chat.waiting:
-            renpy.pause()
-
-        # 是否连接成功
-        if not chat.conn:
-            renpy.call(conn_error, err_info=chat.error)
+    with dissolve
 
     pause
 
@@ -63,23 +52,24 @@ label main_menu:
 
 # 退出前清除缓存
 label quit:
-    python:
-        import os
-        cache_path = os.path.join(config.gamedir, "/audio/ai_audio")
-        if os.path.exists(cache_path):
-            for file in os.listdir(cache_path):
-                file = f"{cache_path}/{file}"
-                os.remove(file)
+    if persistent.auto_clear_cache:
+        python:
+            import os
+
+            cache_path = os.path.join(config.gamedir, "audio", "ai_audio")
+            if os.path.exists(cache_path):
+                for file in os.listdir(cache_path):
+                    file = os.path.join(cache_path, file)
+                    os.remove(file)
     return
 
 
-# 检查网络连接
 label conn_error(err_info):
     scene BG40N2
     play music "audio/bgm219.ogg"
-    error "[err_info!q]"
+    n "[err_info!q]"
 
-    $ renpy.pause(hard=True)    # TODO
+    $ renpy.quit()
 
     return
 
