@@ -1,7 +1,7 @@
 ﻿## 此文件包含有可自定义您游戏的设置。
 
 ## 游戏版本号。
-define config.version = "1.5.1"
+define config.version = "1.5.2"
 
 define gui.interface_text_outlines = [(1,"#000000",1,1)]
 define gui.input_text_outlines = [(1,"#000000",1,1)]
@@ -36,7 +36,7 @@ Amadeus
 
 版本
 
-1.5.1
+1.5.2
 
 项目贡献者
 
@@ -50,7 +50,7 @@ Amadeus
 
 版本更新内容
 
-优化代码与界面
+修复已知BUG
 """)
 
 
@@ -185,7 +185,7 @@ init python:
     ## 将文件列为 None 来使其从构建的发行版中排除。
 
     ## 将文件列为 None 来使其从构建的发行版中排除。
-
+    build.exclude_empty_directories = False
     build.classify('**.bak', None)
     build.classify('**thumbs.db', None)
     build.classify('**.rpy', None)
@@ -194,17 +194,15 @@ init python:
     ## 若要封装文件，需将其列为“archive”。打包，使其无法被玩家更改
 
     build.classify('game/**.png', 'archive')
-    build.classify('game/**.keystore', 'archive')
-    build.classify('game/**.png', 'archive')
     build.classify('game/**.jpg', 'archive')
     build.classify('game/**.rpyc', 'archive')
-    build.classify('game/**.mp3', 'archive')
     build.classify('game/**.wav', 'archive')
     build.classify('game/**.ttf', 'archive')
     build.classify('game/**.otf', 'archive')
-    build.classify('game/**.ogg', 'archive')
     build.classify('game/**.webp', 'archive')
     build.classify('game/**.py', 'archive')
+    build.classify('game/**.ogg', 'archive')
+    build.classify('game/**.avif', 'archive')
 
     ## 匹配为文档模式的文件会在 Mac 应用程序构建中被复制，因此它们同时出现在 APP
     ## 和 ZIP 文件中。
