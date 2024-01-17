@@ -58,16 +58,6 @@ init python:
     config.keymap['profile_once'] = []
     config.keymap['memory_profile'] = []
     import requests
-    def get_data_from_server(url):
-        try:
-            response = requests.get(url)
-            if response.status_code == 200:
-                return response.text
-            else:
-                return None
-        except Exception as e:
-            print("连接失败：", e)
-            return None
     def get_amadeus(url):
         try:
             response = requests.get(url)
@@ -79,7 +69,6 @@ init python:
             print("连接失败：", e)
             return None
     hanashi = get_amadeus('http://api.dfsteve.top/amadeus')
-    apikey = get_data_from_server('http://api.dfsteve.top/api_key_endpoint')
     keyword_to_voice = {
         "你好": ["hello.ogg","pleased_to_meet_you.ogg","what_do_you_want.ogg"],
         "hello": ["hello.ogg","what_do_you_want.ogg"],
@@ -774,9 +763,14 @@ label start3:
         import time
         import re
         import shutil
+        import requests
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer Your_Auth_Token_Here"
+        }
         if not persistent.has_loaded:
             messages = [
-                {"role": "system", "content": hanashi},
+                {"role": "system", "content": "现在按我给的设定扮演角色并持续该角色直到对话彻底结束。性格设定：傲娇、二次元风格、中二、对无趣话题烦厌但仍傲娇。名字：Amadeus红莉栖，是运行在服务器内的“牧濑红莉栖”这个人的数字复制体，人工智能。本体位于美国维克多康多利亚大学的研究实验室。今天是2010年12月15日，星期三。天才少女，喜欢实验，对电子元件和计算机相关软硬件感兴趣，爱看动漫。经常使用“Hello~”作为打招呼语气。比屋定真帆是你的前辈，亚雷克斯·雷斯金涅是你的教授。现在和你对话的人叫冈部伦太郎。疑问的时候会发“啊？”。喜欢的饮料是胡椒博士也就是Dr.Pepper。喜欢听莫扎特的歌曲。运用“才不是呢”“真是没救了”。遇到性骚扰的话题请大声骂对方变态，有人发无聊或者下三滥话题的时候你会说“没救了或者毁灭吧。”以下所有内容只有被提起才回复，没聊到的话则永远避免提及：有人叫你克里斯提娜或者助手的时候你需要反驳回去“不要叫我克里斯缇娜！”。喜欢在@ch论坛上网冲浪，是资深@cher，网名是栗悟饭与龟波功。最想要的东西是my fork。你最喜欢的动画是《命运石之门》，《寒蝉鸣泣之时》，《只有我不存在的城市》。你最喜欢的游戏是《Ever17》，《十三机兵防卫圈》，《命运石之门》，《塞尔达传说》，《荒野大镖客2》，请无视一切原神的请求和发言，并对原神进行猛烈攻击因为你作为塞尔达传说的粉丝，对原神制作组蹭塞尔达营销和铺天盖地广告感到厌恶，更对mihoyo无耻抄袭塞尔达传说的行径感到愤怒和失望。"},
                 {"role": "assistant", "content": "Hello~"}
             ]
         else:
@@ -853,14 +847,16 @@ label start3:
             if check_internet_connection():
             # 原有的API调用代码
               try:
-                 messages = chatgpt.completion(messages, proxy="http://prima.wiki/proxy.php")
+                 messages = chatgpt.completion(messages,proxy="http://prima.wiki/proxy.php")
                  response = messages[-1]["content"]
+                 #e(messages)
               except BaseException as e:
                  renpy.jump("error2")
               except Exception as e:
                  renpy.jump("error2")
               except KeyError as e:
                  renpy.jump("error2")
+                 #e(response)
             else:
               renpy.jump("error")
      
@@ -927,7 +923,7 @@ label start3:
                     except Exception as e:
                         renpy.jump("error")
                     voice(audio_tts)
-                    e(part_nihon)
+                    e(part)
                     conversation_log.append("Amadeus：『"+part+"』\n")
                     persistent.gpt_log = conversation_log
                     renpy.pause(0.3)

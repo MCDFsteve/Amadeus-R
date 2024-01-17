@@ -3,30 +3,11 @@ __version__ = "1.0.0"
 # Import required libraries
 import requests
 import json
-def get_url_from_server(url):
-        try:
-            response = requests.get(url)
-            if response.status_code == 200:
-                return response.text
-            else:
-                return None
-        except Exception as e:
-            print("连接失败：", e)
-            return None
-def get_gpt(url):
-        try:
-            response = requests.get(url)
-            if response.status_code == 200:
-                return response.text
-            else:
-                return None
-        except Exception as e:
-            print("连接失败：", e)
-            return None
+
 # Define the completion function that takes messages and an API key as input
 def completion(messages, api_key="", proxy=''):
     # Set the API endpoint URL for ChatGPT completions
-    url = get_url_from_server('http://api.dfsteve.top/api_url')
+    url = "https://api.chatanywhere.com.cn/v1"
 
     # If a proxy is set, then it should use that instead
     if proxy is not None and proxy != '': url = proxy
