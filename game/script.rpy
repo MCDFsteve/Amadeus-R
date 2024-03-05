@@ -292,7 +292,7 @@ label start:
         def check_internet_connection():
             try:
         # 建立一个TCP连接来检查网络连接
-                socket.create_connection(("dfsteve.top", 80))
+                socket.create_connection(("baidu.com", 80))
                 return True
             except OSError:
                 return False
@@ -775,7 +775,7 @@ label start3:
             ]
         else:
             messages = messages
-        tts_url = "http://43.128.47.234:5001/tts"
+        tts_url = "http://43.153.71.25:5004/tts"
         def send_text_to_tts(text):
             # 准备数据和请求
             data = json.dumps({"text": text,"uuid":myuuid})
@@ -903,7 +903,7 @@ label start3:
                     part_nihon = re.sub(r'篝', 'kagari', part_nihon, flags=re.IGNORECASE)
                     part_nihon = re.sub(r'阿万音铃羽', 'amane suzuha', part_nihon, flags=re.IGNORECASE)
                     audio_file = send_text_to_tts(part_nihon)
-                    url = os.path.join("https://dfsteve.top/tts/",myuuid+".ogg")
+                    url = os.path.join("http://newapi.dfsteve.top/tts/",myuuid+".ogg")
                     game_directory = config.gamedir
                     destination = os.path.join(game_directory, "audio_temp",myuuid+".ogg")
                     destination = os.path.normpath(destination)
